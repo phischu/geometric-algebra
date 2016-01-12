@@ -170,6 +170,13 @@ unitPseudoscalar = undefined
 cross :: Vector r -> Vector r -> Vector r
 cross a b = dualBivector (outerVectorVector a b)
 
+-- Meet
+
+-- meet is outer
+
+-- Join
+
+-- join is dual of meet and therefore dual of outer
 
 -- Examples
 
