@@ -1,23 +1,49 @@
-module Projective2D where
+{-# LANGUAGE DeriveFunctor #-}
+module Homogeneous2D where
+
+import Linear.Vector (
+  Additive((^+^), zero))
+import Linear.Metric (
+  Metric(dot))
+import Control.Applicative (
+  Applicative(pure,(<*>)), liftA2)
 
 
-data Scalar r = Scalar r
+-- | A point in 2-dimensional space. Possibly at infinity.
+data Point2 r = Point2 !r !r !r
+  deriving (Show, Read, Eq, Ord, Functor)
 
-data Vector r = Vector r r r
+instance Applicative Point2 where
+  pure x = Point2 x x x
+  Point2 f1 f2 f3 <*> Point2 x1 x2 x3 = Point2 (f1 x1) (f2 x2) (f3 x3)
 
-data Bivector r = Bivector r r r
+instance Additive Point2 where
+  zero = pure 0
+  (^+^) = liftA2 (+)
 
-data Trivector r = Trivector r
+-- instance R1, R2, R3 Point2
 
-data Multivector r = Multivector (Scalar r) (Vector r) (Bivector r) (Trivector r)
+instance Metric Point2 where
+  dot (Point2 a1 a2 a3) (Point2 b1 b2 b3) = error "metric of points?"
 
-vectorPart :: Multivector r -> Vector r
-vectorPart = undefined
+-- instance Outer Point2 Point2
+-- instance Weight, Attitude, ....
 
-data Line r = Line (Vector r)
+-- | A line in 2-dimensional space. Possibly at infinity.
+data Line2 r = Line2 !r !r !r
+  deriving (Show, Read, Eq, Ord, Functor)
 
-data Point r = Point (Bivector r)
+instance Applicative Line2 where
+  pure x = Line2 x x x
+  Line2 f1 f2 f3 <*> Line2 x1 x2 x3 = Line2 (f1 x1) (f2 x2) (f3 x3)
 
+instance Additive Line2 where
+  zero = pure 0
+  (^+^) = liftA2 (+)
+
+-- Trivector?
+
+{-
 -- c * e0 + a * e1 + b * e2
 data NormalizedLine r = NormalizedLine r r r
 
@@ -129,3 +155,4 @@ spread l m = negate (geometric a a) where
 -- cross omitted
 -- twist omitted
 
+-}

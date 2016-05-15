@@ -1,36 +1,42 @@
 {-# LANGUAGE DeriveFunctor #-}
 module Euclidean2D where
 
-import Linear.Vector (Additive((^+^), zero))
-import Control.Applicative (Applicative(pure,(<*>)), liftA2)
+import Linear.V2 (
+  V2(V2))
+import Linear.Vector (
+  Additive((^+^), zero))
+import Linear.Metric (
+  Metric(dot))
+import Control.Applicative (
+  Applicative(pure,(<*>)), liftA2)
 
-data Vector2 r = Vector2 r r
+
+-- | A 2-dimensional area.
+data Area2 r = Area2 !r
   deriving (Show, Read, Eq, Ord, Functor)
 
-instance Applicative Vector2 where
-  pure a = Vector2 a a
-  Vector2 f1 f2 <*> Vector2 x1 x2 = Vector2 (f1 x1) (f2 x2)
+instance Applicative Area2 where
+  pure x = Area2 x
+  Area2 f <*> Area2 x = Area2 (f x)
 
-instance Additive Vector2 where
+instance Additive Area2 where
   zero = pure 0
   (^+^) = liftA2 (+)
 
-data Bivector2 r = Bivector2 r
-  deriving (Show, Read, Eq, Ord, Functor)
+-- instance Num Area2
 
-instance Applicative Bivector2 where
-  pure x = Bivector2 x
-  Bivector2 f <*> Bivector2 x = Bivector2 (f x)
+-- instance R1 Area2
 
-instance Additive Bivector2 where
-  zero = pure 0
-  (^+^) = liftA2 (+)
+instance Metric Area2 where
+  dot (Area2 a) (Area2 b) = a * b
 
-data Multivector2 r = Multivector2 {
-  _scalar2 :: r,
-  _vector2 :: Vector2 r,
-  _bivector2 :: Bivector2 r }
 
-bivector2 :: (Num r) => Vector2 r -> Vector2 r -> Bivector2 r
-bivector2 (Vector2 a1 a2) (Vector2 b1 b2) = Bivector2 (a1 * b2 - a2 * b1)
+
+-- instance Outer V2 V2 Area2
+
+outerV2V2 :: (Num r) => V2 r -> V2 r -> Area2 r
+outerV2V2 (V2 a1 a2) (V2 b1 b2) = Area2 (a1 * b2 - a2 * b1)
+
+unitArea2 :: (Num r) => Area2 r
+unitArea2 = Area2 1
 
