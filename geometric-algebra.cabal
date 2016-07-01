@@ -17,7 +17,8 @@ cabal-version:       >=1.10
 library
   exposed-modules:     Euclidean2D,
                        Euclidean3D,
-                       Homogeneous2D
+                       Homogeneous2D,
+                       Conformal3D
   build-depends:       base >=4.7 && <4.8,
                        linear >=1.20.2 && < 1.21
   ghc-options:         -Wall
