@@ -18,7 +18,8 @@ library
   exposed-modules:     Euclidean2D,
                        Euclidean3D,
                        Homogeneous2D,
-                       Conformal3D
+                       Conformal3D,
+                       LinearFunction
   build-depends:       base >=4.7 && <4.8,
                        linear >=1.20.2 && < 1.21
   ghc-options:         -Wall
