@@ -19,7 +19,8 @@ library
                        GeometricAlgebra.Euclidean3D,
                        GeometricAlgebra.Homogeneous2D,
                        GeometricAlgebra.Conformal3D,
-                       GeometricAlgebra.LinearFunction
+                       GeometricAlgebra.LinearFunction,
+                       GeometricAlgebra.Tutorial
   build-depends:       base >=4.7 && <4.8,
                        linear >=1.20.2 && < 1.21
   ghc-options:         -Wall
