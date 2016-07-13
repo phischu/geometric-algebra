@@ -15,6 +15,11 @@ class EI v where
 class EO v where
   _eo :: v r -> r
 
+-- Sphere
+
+-- PointSphere
+
+
 
 -- Entities
 
