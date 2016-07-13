@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveFunctor #-}
-module Homogeneous2D where
+module GeometricAlgebra.Homogeneous2D where
 
 import Linear.Vector (
   Additive((^+^), zero))

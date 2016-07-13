@@ -1,4 +1,4 @@
-module Conformal3D where
+module GeometricAlgebra.Conformal3D where
 
 
 import Linear (V3)

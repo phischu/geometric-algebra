@@ -1,4 +1,4 @@
-module Euclidean3D where
+module GeometricAlgebra.Euclidean3D where
 
 
 -- Types

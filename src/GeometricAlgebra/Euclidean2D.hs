@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveFunctor #-}
-module Euclidean2D where
+module GeometricAlgebra.Euclidean2D where
 
 import Linear.V2 (
   V2(V2))

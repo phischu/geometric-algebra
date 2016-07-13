@@ -1,4 +1,4 @@
-module LinearFunction where
+module GeometricAlgebra.LinearFunction where
 
 
 
